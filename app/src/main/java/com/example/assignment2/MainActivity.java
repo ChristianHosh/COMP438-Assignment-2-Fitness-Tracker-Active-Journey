@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.assignment2.models.Workout;
 import com.example.assignment2.models.WorkoutEntryAdapter;
@@ -50,18 +51,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-
+        Log.i("LIFECYCLE", "STOPPED");
         saveWorkoutsToLocalStorage();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
+        Log.i("LIFECYCLE", "RESUMED");
         reloadRecycler();
     }
 
     private void loadLogEntries() {
+        Log.i("APP","LOADED ENTRIES");
         SharedPreferences preferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
         String workoutJson = preferences.getString(WORKOUTS_KEY, null);
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void reloadRecycler() {
+        Log.i("APP","RELOADED ENTRIES");
         WorkoutEntryAdapter workoutEntryAdapter = new WorkoutEntryAdapter(MainActivity.this);
         recyclerView_workouts.setAdapter(workoutEntryAdapter);
     }
@@ -98,8 +101,6 @@ public class MainActivity extends AppCompatActivity {
 
         editor.putString(WORKOUTS_KEY, workoutsToJSON);
         editor.apply();
-
-        WorkoutLog.clear();
     }
 
 
