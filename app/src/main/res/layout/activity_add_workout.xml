@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
 
             android:inputType="text"
-            
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_name_form"
             />
