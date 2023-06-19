@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void reloadRecycler() {
         Log.i("APP","RELOADED ENTRIES");
-        WorkoutEntryAdapter workoutEntryAdapter = new WorkoutEntryAdapter(MainActivity.this);
+        WorkoutEntryAdapter workoutEntryAdapter = new WorkoutEntryAdapter(MainActivity.this, (Activity) this);
         recyclerView_workouts.setAdapter(workoutEntryAdapter);
     }
 

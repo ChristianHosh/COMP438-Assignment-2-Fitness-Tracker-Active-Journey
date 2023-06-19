@@ -38,116 +38,133 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <ScrollView
+        android:id="@+id/log_scrollview"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
-        android:paddingHorizontal="20dp"
-
-        android:paddingVertical="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_header">
-
-        <TextView
-            android:id="@+id/add_name_form"
-            style="@style/text.form_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="@string/name_your_workout"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <EditText
-            android:id="@+id/add_edit_name"
-            style="@style/text.form_control"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:inputType="text"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_name_form"
-            />
-
-
-        <TextView
-            android:id="@+id/add_type_form"
-            style="@style/text.form_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/choose_workout_type"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_edit_calories" />
-
-        <Spinner
-            android:id="@+id/add_spinner_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/body_bg"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_type_form" />
-
-        <TextView
-            android:id="@+id/add_calories_form"
-            style="@style/text.form_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="@string/enter_calories_burned"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_edit_name" />
-
-        <EditText
-            android:id="@+id/add_edit_calories"
-            style="@style/text.form_control"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:inputType="number"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_calories_form" />
-
-        <TextView
-            android:id="@+id/add_extra_text_form"
-            style="@style/text.form_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="@string/extra_description"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_spinner_type" />
-
-        <EditText
-            android:id="@+id/add_edit_extra"
-            style="@style/text.form_control"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="4"
-
-            android:inputType="textMultiLine"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_extra_text_form" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        style="@style/button.primary"
-        android:id="@+id/add_button_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/log_workout"
-        android:paddingHorizontal="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/add_button_submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/add_header">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+
+            android:paddingVertical="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_header">
+
+            <TextView
+                android:id="@+id/add_name_form"
+                style="@style/text.form_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:labelFor="@id/add_edit_name"
+                android:text="@string/name_your_workout"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/add_edit_name"
+                style="@style/text.form_control"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:importantForAutofill="no"
+
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_name_form" />
+
+            <TextView
+                android:id="@+id/add_calories_form"
+                style="@style/text.form_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:labelFor="@id/add_edit_calories"
+                android:text="@string/enter_calories_burned"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_edit_name" />
+
+            <EditText
+                android:id="@+id/add_edit_calories"
+                style="@style/text.form_control"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:inputType="number"
+
+                android:maxLength="4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_calories_form" />
+
+
+            <TextView
+                android:id="@+id/add_type_form"
+                style="@style/text.form_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/add_spinner_type"
+                android:text="@string/choose_workout_type"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_edit_calories" />
+
+            <Spinner
+                android:id="@+id/add_spinner_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/body_bg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_type_form" />
+
+
+            <TextView
+                android:id="@+id/add_extra_text_form"
+                style="@style/text.form_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:labelFor="@id/add_edit_extra"
+                android:text="@string/extra_description"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_spinner_type" />
+
+            <EditText
+                android:id="@+id/add_edit_extra"
+                style="@style/text.form_control"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:lines="4"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_extra_text_form" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add_button_submit"
+        style="@style/button.primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:text="@string/log_workout"
+        app:layout_constraintTop_toBottomOf="@+id/log_scrollview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

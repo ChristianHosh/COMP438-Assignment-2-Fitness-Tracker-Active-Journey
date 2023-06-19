@@ -1,6 +1,8 @@
 package com.example.assignment2.models;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -9,21 +11,24 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.assignment2.DetailedActivity;
 import com.example.assignment2.R;
+import com.google.gson.Gson;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 public class WorkoutEntryAdapter extends RecyclerView.Adapter<WorkoutEntryAdapter.ViewHolder> {
 
-    private final static String CALORIES_EXTRA = " Kcal \uD83D\uDD25";
-    private Context context;
+    public final static  String ENTRY_KEY = "WORKOUT_ENTRY";
+
+    private final Context context;
+    private final Activity activity;
     private final ArrayList<Workout> workoutList = new ArrayList<>();
 
-    public WorkoutEntryAdapter(Context context) {
+    public WorkoutEntryAdapter(Context context, Activity activity) {
         this.context = context;
+        this.activity = activity;
+
         workoutList.clear();
         workoutList.addAll(WorkoutLog.getWorkouts());
     }
@@ -42,20 +47,24 @@ public class WorkoutEntryAdapter extends RecyclerView.Adapter<WorkoutEntryAdapte
     public void onBindViewHolder(@NonNull WorkoutEntryAdapter.ViewHolder holder, int position) {
         final Workout entry = workoutList.get(position);
         CardView cardView = holder.cardView;
-        TextView card_textName = (TextView)cardView.findViewById(R.id.card_text_name);
-        TextView card_textType = (TextView)cardView.findViewById(R.id.card_text_type);
-        TextView card_textDate = (TextView)cardView.findViewById(R.id.card_text_date);
-        TextView card_textCals = (TextView)cardView.findViewById(R.id.card_text_calories);
-        TextView card_textDesc = (TextView)cardView.findViewById(R.id.card_text_description);
 
 
-        String entryCaloriesText = entry.getCaloriesBurned() + CALORIES_EXTRA;
 
-        card_textName.setText(entry.getName());
-        card_textType.setText(entry.getType());
-        card_textDate.setText(formatDate(entry.getDate()));
-        card_textCals.setText(entryCaloriesText);
-        card_textDesc.setText(entry.getExtraText());
+
+        holder.card_textName.setText(entry.getName());
+        holder.card_textType.setText(entry.getType());
+        holder.card_textDate.setText(entry.getFormattedDate());
+        holder.card_textCals.setText(entry.getFormattedCalories());
+
+        cardView.setOnClickListener(e -> {
+            String jsonEntry = new Gson().toJson(entry);
+
+            Intent intent = new Intent(context, DetailedActivity.class);
+            intent.putExtra(ENTRY_KEY, jsonEntry);
+
+            context.startActivity(intent);
+            activity.overridePendingTransition(R.anim.activity_enter,R.anim.activity_exit);
+        });
     }
 
     @Override
@@ -63,19 +72,21 @@ public class WorkoutEntryAdapter extends RecyclerView.Adapter<WorkoutEntryAdapte
         return workoutList.size();
     }
 
-    private String formatDate(Date date){
-        String pattern = "dd MMM yyyy";
 
-        SimpleDateFormat formatter = new SimpleDateFormat(pattern, new Locale("en"));
-
-        return formatter.format(date);
-    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final CardView cardView;
-
+        private final TextView card_textName;
+        private final TextView card_textType;
+        private final TextView card_textDate;
+        private final TextView card_textCals;
         public ViewHolder(CardView cardView) {
             super(cardView);
+            this.card_textName = cardView.findViewById(R.id.card_text_name);
+            this.card_textType = cardView.findViewById(R.id.card_text_type);
+            this.card_textDate = cardView.findViewById(R.id.card_text_date);
+            this.card_textCals = cardView.findViewById(R.id.card_text_calories);
+
             this.cardView = cardView;
         }
 

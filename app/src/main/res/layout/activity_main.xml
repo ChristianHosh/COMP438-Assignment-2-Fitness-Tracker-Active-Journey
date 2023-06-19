@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/main_header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@color/secondary_bg"
         android:orientation="horizontal"
         android:paddingHorizontal="10dp"
@@ -54,7 +54,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/main_footer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@color/secondary_bg"
         android:paddingHorizontal="10dp"
         android:paddingVertical="5dp"
